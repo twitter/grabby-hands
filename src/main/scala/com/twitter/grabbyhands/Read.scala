@@ -47,7 +47,7 @@ class Read(val message: ByteBuffer, val connection: ConnectionRecv)
 
   /** Returns only once the transaction has been closed or aborted. */
   def awaitComplete() {
-    openLatch.await(99999, TimeUnit.DAYS)
+    openLatch.await()
   }
 
   /** Returns true if transaction is still open, that is neither completed nor cancelled */

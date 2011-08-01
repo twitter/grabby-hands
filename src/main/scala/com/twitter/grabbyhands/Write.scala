@@ -43,7 +43,7 @@ class Write(val message: ByteBuffer, val watcher: Boolean => Unit) {
 
   /** Returns only once the message has been sent to a Kestrel. */
   def awaitWrite() {
-    writtenLatch.await(99999, TimeUnit.DAYS)
+    writtenLatch.await()
   }
 
   protected[grabbyhands] def write() {
