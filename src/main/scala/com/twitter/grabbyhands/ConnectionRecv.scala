@@ -184,11 +184,11 @@ protected[grabbyhands] class ConnectionRecv(
 
     if (queue.transactional) {
       val read = new Read(payload, this)
-      transactionRecvQueue.offer(read, 99999, TimeUnit.HOURS)
+      transactionRecvQueue.put(read)
       if (log.isLoggable(Level.FINEST)) log.finest(connectionName + " awaiting transaction close")
       read.awaitComplete()
     } else {
-      recvQueue.offer(payload, 999999, TimeUnit.HOURS)
+      recvQueue.put(payload)
     }
     if (log.isLoggable(Level.FINEST)) log.finest(connectionName + " message read")
 
