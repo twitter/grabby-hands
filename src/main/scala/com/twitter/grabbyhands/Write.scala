@@ -37,7 +37,7 @@ class Write(val message: ByteBuffer, val watcher: Boolean => Unit) {
   def getWatcher(): Function[Boolean, Unit] = watcher
 
   /** Returns only once the message has been sent to a Kestrel server or timeout occurs. */
-  def awaitWrite(timeout: Int, units: TimeUnit) {
+  def awaitWrite(timeout: Int, units: TimeUnit) = {
     writtenLatch.await(timeout, units)
   }
 

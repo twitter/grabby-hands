@@ -41,7 +41,7 @@ class Read(val message: ByteBuffer, val connection: ConnectionRecv)
   }
 
   /** Returns only once the transaction has been closed, aborted, or timeout occurs. */
-  def awaitComplete(timeout: Int, units: TimeUnit) {
+  def awaitComplete(timeout: Int, units: TimeUnit) = {
     openLatch.await(timeout, units)
   }
 
