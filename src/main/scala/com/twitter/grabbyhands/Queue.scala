@@ -57,7 +57,7 @@ protected case class Queue(grabbyHands: GrabbyHands, config: ConfigQueue) {
   }
 
   connections.foreach(connection => connection.started())
-  log.fine("queueu " + name + " all connection threads running")
+  log.fine("queue " + name + " all connection threads running")
 
   def getCounters(): QueueCounters = {
     counters
@@ -74,6 +74,10 @@ protected case class Queue(grabbyHands: GrabbyHands, config: ConfigQueue) {
 
   def pause() {
     connections.foreach(_.pause)
+  }
+
+  def pauseReceive() {
+    connections.filter(_.isInstanceOf[ConnectionRecv]).foreach(_.pause)
   }
 
   def resume() {
